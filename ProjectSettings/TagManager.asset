@@ -7,6 +7,9 @@ TagManager:
   - Scene
   - UI
   - Canvas
+  - Paddle
+  - Ball
+  - Block
   layers:
   - Default
   - TransparentFX
