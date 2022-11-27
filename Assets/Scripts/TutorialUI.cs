@@ -32,13 +32,6 @@ public class TutorialUI : MonoBehaviour
         SetNowPage();
     }
 
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     private void Left_Click()
     {
         m_pageIndex = System.Math.Clamp(--m_pageIndex, 0, m_pageSprites.Count - 1);
