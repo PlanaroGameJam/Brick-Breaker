@@ -11,6 +11,8 @@ public class PlayScene : MonoBehaviour
     void Awake()
     {
         m_playerController = Instantiate(m_playerControllerObject, null).GetComponent<PlayerController>();
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Confined;
     }
 
     // Update is called once per frame

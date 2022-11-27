@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using static UnityEngine.Rendering.VirtualTexturing.Debugging;
 
 public class PlayerController : MonoBehaviour
 {
@@ -27,7 +28,10 @@ public class PlayerController : MonoBehaviour
             }
             else if (inputActionAsset.name.Contains("Play"))
             {
-
+                var paddle = GameObject.FindWithTag("Paddle").GetComponent<Paddle>();
+                var play = inputActionAsset.FindActionMap("Play");
+                play.FindAction("Move").performed += paddle.Move;
+                play.Enable();
             }
             else if (inputActionAsset.name.Contains("Result"))
             {
@@ -51,7 +55,10 @@ public class PlayerController : MonoBehaviour
             }
             else if (inputActionAsset.name.Contains("Play"))
             {
-
+                var paddle = GameObject.FindWithTag("Paddle").GetComponent<Paddle>();
+                var play = inputActionAsset.FindActionMap("Play");
+                play.FindAction("Move").performed -= paddle.Move;
+                play.Disable();
             }
             else if (inputActionAsset.name.Contains("Result"))
             {

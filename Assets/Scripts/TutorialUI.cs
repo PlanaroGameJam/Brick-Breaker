@@ -51,7 +51,7 @@ public class TutorialUI : MonoBehaviour
     private void Close_Click()
     {
         //m_playerController.Disable();
-        SceneManager.LoadSceneAsync("Play");
+        SceneManager.LoadSceneAsync("Title");
     }
 
     private void SetSprite()
