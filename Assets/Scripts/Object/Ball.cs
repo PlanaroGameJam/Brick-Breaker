@@ -22,11 +22,11 @@ public class Ball : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Paddle"))
-        {
-            Vector2 reflect = Vector2.Reflect(m_rigidBody2D.velocity, collision.contacts.First().normal);
-            m_rigidBody2D.velocity = reflect;
-        }
+        //if (collision.gameObject.CompareTag("Paddle"))
+        //{
+        //    Vector2 reflect = Vector2.Reflect(m_rigidBody2D.velocity, collision.contacts.First().normal);
+        //    m_rigidBody2D.velocity = reflect;
+        //}
     }
 
 

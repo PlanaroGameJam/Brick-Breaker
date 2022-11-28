@@ -11,6 +11,7 @@ public class ResultScene : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
+        Cursor.visible = true;
         m_resultUI = Instantiate(m_resultUIObject, GameObject.FindWithTag("Canvas").transform).GetComponent<ResultUI>();
     }
 

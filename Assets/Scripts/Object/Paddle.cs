@@ -23,6 +23,8 @@ public class Paddle : MonoBehaviour
     public void Move(InputAction.CallbackContext context)
     {
         var position = context.ReadValue<Vector2>();
+        position.x = Mathf.Clamp(position.x, 0.0f, (float)Screen.width);
+        position.y = Mathf.Clamp(position.y, 0.0f, 930.0f / 1080.0f * (float)Screen.height);
         m_rigidBody2D.position = Camera.main.ScreenToWorldPoint(position);
     }
 
