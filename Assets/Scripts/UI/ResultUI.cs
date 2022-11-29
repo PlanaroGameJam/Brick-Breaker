@@ -34,7 +34,7 @@ public class ResultUI : MonoBehaviour
 
     private void SetResult()
     {
-        m_currentScoreText.text = $"スコア：{0}点";
+        m_currentScoreText.text = $"スコア：{Parameter.CURRENT_SCORE.ToString()}点";
         m_currentRankText.text = "";
         m_currentRankCommentText.text = "";
     }

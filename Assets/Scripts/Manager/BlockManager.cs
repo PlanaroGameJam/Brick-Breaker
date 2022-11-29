@@ -32,8 +32,20 @@ public class BlockManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        foreach (var blockObject in m_blocks)
+        {
+            var block = blockObject.GetComponent<Block>();
+            if (block.GetLevel() <= 0)
+            {
+                continue;
+            }
+            block.SetColor(m_levelColor[block.GetLevel()]);
+        }
+        var remove = m_blocks.FindAll(blockObject => blockObject.GetComponent<Block>().GetLevel() <= 0);
+        m_blocks.RemoveAll(blockObject => blockObject.GetComponent<Block>().GetLevel() <= 0);
+        remove.ForEach(obj => Destroy(obj));
     }
+
 
     /*============================================
      * 概要：全てのブロックが壊れているか

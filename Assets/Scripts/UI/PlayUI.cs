@@ -23,6 +23,10 @@ public class PlayUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        m_scoreText.text = $"スコア：{Parameter.CURRENT_SCORE.ToString()}点";
         m_timeText.text = $"時間：{(Parameter.CURRENT_TIME -= Time.deltaTime).ToString("#.#")}秒";
+        if (Parameter.CURRENT_HIGH_SCORE < Parameter.CURRENT_SCORE)
+            Parameter.CURRENT_HIGH_SCORE = Parameter.CURRENT_SCORE;
+        m_highScoreText.text = $"ハイスコア：{Parameter.CURRENT_HIGH_SCORE.ToString()}点";
     }
 }

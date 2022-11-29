@@ -1,14 +1,26 @@
 {
-    "name": "Play",
+    "name": "ControlActions",
     "maps": [
         {
+            "name": "Title",
+            "id": "95c69e25-74fc-4c42-b2e6-8cd8e49b3947",
+            "actions": [],
+            "bindings": []
+        },
+        {
+            "name": "Tutorial",
+            "id": "f5c91552-e22b-45d8-86b1-3b6244634de0",
+            "actions": [],
+            "bindings": []
+        },
+        {
             "name": "Play",
-            "id": "a516a45e-0de9-4568-85e1-13f6edf37e04",
+            "id": "8262b0d5-9693-4ace-90b7-21fd23c51dd9",
             "actions": [
                 {
                     "name": "Move",
                     "type": "Value",
-                    "id": "66e7d0d8-1c3c-475e-adfd-0ac4c3bb2690",
+                    "id": "994958bf-9986-4cc3-a381-c848b48901e9",
                     "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": "",
@@ -18,7 +30,7 @@
             "bindings": [
                 {
                     "name": "",
-                    "id": "c160b109-7e1f-4983-ae83-c716c974474c",
+                    "id": "cf50a012-6ba2-4196-b43e-d8ad71054238",
                     "path": "<Mouse>/position",
                     "interactions": "",
                     "processors": "",
@@ -28,6 +40,12 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "Result",
+            "id": "c78139f8-e4b8-4409-86d4-6aec53c5808f",
+            "actions": [],
+            "bindings": []
         }
     ],
     "controlSchemes": []

@@ -4,84 +4,65 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
-using static UnityEngine.Rendering.VirtualTexturing.Debugging;
 
+[RequireComponent(typeof(PlayerInput))]
 public class PlayerController : MonoBehaviour
 {
-    [Serializable]
-    public struct Controller
-    {
-        public InputActionAsset inputActionAsset;
-
-        public void Enable()
-        {
-            if(inputActionAsset.name.Contains("Title"))
-            {
-                var titleScene = GameObject.FindWithTag("Scene").GetComponent<TitleScene>();
-                var ui = inputActionAsset.FindActionMap("UI");
-                ui.FindAction("Enter").started += titleScene.Enter;
-                ui.Enable();
-            }
-            else if (inputActionAsset.name.Contains("Tutorial"))
-            {
-
-            }
-            else if (inputActionAsset.name.Contains("Play"))
-            {
-                var paddle = GameObject.FindWithTag("Paddle").GetComponent<Paddle>();
-                var play = inputActionAsset.FindActionMap("Play");
-                play.FindAction("Move").performed += paddle.Move;
-                play.Enable();
-            }
-            else if (inputActionAsset.name.Contains("Result"))
-            {
-
-            }
-
-        }
-
-        public void Disable()
-        {
-            if (inputActionAsset.name.Contains("Title"))
-            {
-                var titleScene = GameObject.FindWithTag("Scene").GetComponent<TitleScene>();
-                var ui = inputActionAsset.FindActionMap("UI");
-                ui.FindAction("Enter").started -= titleScene.Enter;
-                ui.Disable();
-            }
-            else if (inputActionAsset.name.Contains("Tutorial"))
-            {
-
-            }
-            else if (inputActionAsset.name.Contains("Play"))
-            {
-                var paddle = GameObject.FindWithTag("Paddle").GetComponent<Paddle>();
-                var play = inputActionAsset.FindActionMap("Play");
-                play.FindAction("Move").performed -= paddle.Move;
-                play.Disable();
-            }
-            else if (inputActionAsset.name.Contains("Result"))
-            {
-
-            }
-
-        }
-    }
-
-    [SerializeField]
-    List<InputActionAsset> m_inputActionAssetsList;
-
-    public Controller m_controller;
+    private ControlActions m_controlActions;
 
     private void OnEnable()
     {
-        m_controller.inputActionAsset = m_inputActionAssetsList.Find(inputActionAsset => inputActionAsset.name == SceneManager.GetActiveScene().name);
-        m_controller.Enable();
+        m_controlActions = new ControlActions();
+        Enable();
+    }
+
+    public void Enable()
+    {
+        string currentSceneName = SceneManager.GetActiveScene().name;
+        if (currentSceneName.Contains("Title"))
+        {
+
+        }
+        else if (currentSceneName.Contains("Tutorial"))
+        {
+
+        }
+        else if (currentSceneName.Contains("Play"))
+        {
+            var paddle = GameObject.FindWithTag("Paddle").GetComponent<Paddle>();
+            m_controlActions.Play.Move.performed += paddle.Move;
+            m_controlActions.Play.Enable();
+        }
+        else if (currentSceneName.Contains("Result"))
+        {
+
+        }
+
     }
 
     public void Disable()
     {
-        m_controller.Disable();
+        string currentSceneName = SceneManager.GetActiveScene().name;
+        if (currentSceneName.Contains("Title"))
+        {
+
+        }
+        else if (currentSceneName.Contains("Tutorial"))
+        {
+
+        }
+        else if (currentSceneName.Contains("Play"))
+        {
+            var paddle = GameObject.FindWithTag("Paddle").GetComponent<Paddle>();
+            m_controlActions.Play.Move.performed -= paddle.Move;
+            m_controlActions.Play.Disable();
+        }
+        else if (currentSceneName.Contains("Result"))
+        {
+
+        }
+
     }
+
 
 }

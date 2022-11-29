@@ -21,12 +21,12 @@ public static class Parameter
     public static float LIMIT_TIME = 60.0f;
     // 現在の時間
     public static float CURRENT_TIME = LIMIT_TIME;
-    // ブロックが壊れた際の加算スコア
-    public static int BREAK_BLOCK_SCORE = 200;
+    // ブロックにヒットした際の加算スコア
+    public static int HIT_BLOCK_SCORE = 200;
     // パドルがブロックに触れた際のスコア減少量(毎フレーム)
     public static int DECREASE_SCORE_AMOUNT = 1;
     // ボールの最低速度
-    public static Vector2 BALL_MIN_VELOCITY = new Vector2(1.0f, 1.0f);
+    public static Vector2 BALL_MIN_VELOCITY = new Vector2(-5.0f, -5.0f);
     // ボールが反射する際の速度倍率
     public static float BALL_BOUND_VELOCITY_MULTIPLY = 0.9f;
     // パドルがパワーチャージを行う際のレベル上昇間隔
@@ -40,7 +40,7 @@ public static class Parameter
     // 現在のハイスコア
     public static int CURRENT_HIGH_SCORE = 0;
     // ステージの開始位置(一番左上のブロックの位置)
-    public static Vector2 START_STAGE_POSITION = new Vector2(-4.0f, -2.0f);
+    public static Vector2 START_STAGE_POSITION = new Vector2(-3.5f, -2.0f);
     // ブロックの配置間隔
-    public static Vector2 BLOCK_POSITION_INTERVAL = new Vector2(0.5f, 0.5f);
+    public static Vector2 BLOCK_POSITION_INTERVAL = new Vector2(0.5f, 0.25f);
 }
