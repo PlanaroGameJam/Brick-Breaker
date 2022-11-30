@@ -148,6 +148,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_rigidBody2D: {fileID: -2227992706306569637}
+  m_spriteRenderer: {fileID: 5017672919360971781}
+  m_boxCollider2D: {fileID: 5064251381464098422}
 --- !u!1 &7619898421689535496
 GameObject:
   m_ObjectHideFlags: 0

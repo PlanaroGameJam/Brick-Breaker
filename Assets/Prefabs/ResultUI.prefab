@@ -464,6 +464,12 @@ MonoBehaviour:
   m_currentRankCommentText: {fileID: 6881119645587342928}
   m_restartButton: {fileID: 8442651817940488084}
   m_exitButton: {fileID: 8442651817182934028}
+  m_scoreRankList:
+  - {fileID: 11400000, guid: adbfc5d5a1b7eb3469aef1e7fcf2a982, type: 2}
+  - {fileID: 11400000, guid: 3fdbe713dec84634e8af8b976dc14a9c, type: 2}
+  - {fileID: 11400000, guid: 660715adc7fe94447a5c54cd06ab3e24, type: 2}
+  - {fileID: 11400000, guid: 555c3cdbea74ac84f97c4249f5804a83, type: 2}
+  - {fileID: 11400000, guid: dbf68c228fafa1244a516099ab70452d, type: 2}
 --- !u!1 &8442651817182934030
 GameObject:
   m_ObjectHideFlags: 0

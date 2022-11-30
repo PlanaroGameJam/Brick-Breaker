@@ -8,6 +8,7 @@ public class Ball : MonoBehaviour
     [SerializeField]
     private Rigidbody2D m_rigidBody2D;
     private bool m_isOutOfRange = false;
+    private int m_level = 2;
 
     // Start is called before the first frame update
     void Awake()
@@ -36,7 +37,10 @@ public class Ball : MonoBehaviour
 
         if(collision.gameObject.CompareTag("Block"))
         {
-            Parameter.CURRENT_SCORE += Parameter.HIT_BLOCK_SCORE;
+            if(Vector2.SqrMagnitude(m_rigidBody2D.velocity) > 13.0f)
+                m_rigidBody2D.sharedMaterial.bounciness = Parameter.BALL_BOUND_VELOCITY_MULTIPLY;
+            else
+                m_rigidBody2D.sharedMaterial.bounciness = 1.0f;
         }
     }
 
@@ -51,6 +55,11 @@ public class Ball : MonoBehaviour
     public bool IsOutOfRange()
     {
         return m_isOutOfRange;
+    }
+
+    public int GetLevel()
+    {
+        return m_level;
     }
 
 }

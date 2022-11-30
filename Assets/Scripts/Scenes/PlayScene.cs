@@ -26,10 +26,10 @@ public class PlayScene : MonoBehaviour
     void Awake()
     {
         m_stageObject = Instantiate(m_stageObject, transform);
-        Instantiate(m_blockManagerObject, null).TryGetComponent(out m_blockManager);
         m_outOfDisplay = Instantiate(m_outOfDisplay, new Vector3(0.0f, -0.7f, 0.0f), Quaternion.identity, null);
         Instantiate(m_paddleObject, null).TryGetComponent(out m_paddle);
         Instantiate(m_ballObject, null).TryGetComponent(out m_ball);
+        Instantiate(m_blockManagerObject, null).TryGetComponent(out m_blockManager);
         Instantiate(m_playerControllerObject, null).TryGetComponent(out m_playerController);
         Instantiate(m_playUIObject, GameObject.FindWithTag("Canvas").transform);
         Cursor.visible = false;
@@ -46,7 +46,7 @@ public class PlayScene : MonoBehaviour
         {
             m_playerController.Disable();
             SceneManager.LoadSceneAsync("Result");
-        }
+        };
     }
 
     private bool IsGameOver()
