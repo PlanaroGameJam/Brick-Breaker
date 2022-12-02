@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5064251381464098422}
   - component: {fileID: -2227992706306569637}
   - component: {fileID: 2235257654218879161}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Paddle
   m_TagString: Paddle
   m_Icon: {fileID: 0}
@@ -160,7 +160,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3444824919121034694}
   - component: {fileID: 5244397762227924931}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: JustCollision
   m_TagString: Untagged
   m_Icon: {fileID: 0}

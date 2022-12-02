@@ -12,7 +12,6 @@ public class Paddle : MonoBehaviour
     private SpriteRenderer m_spriteRenderer;
     [SerializeField]
     private BoxCollider2D m_boxCollider2D;
-
     private bool m_isTouchToBlock = false;
 
     private readonly Color NORMAL_COLOR = Color.cyan;
@@ -28,6 +27,7 @@ public class Paddle : MonoBehaviour
     void Update()
     {
         m_spriteRenderer.color = m_isTouchToBlock ? ALPHA_COLOR : NORMAL_COLOR;
+        gameObject.layer = m_isTouchToBlock ? LayerMask.NameToLayer("Alpha") : LayerMask.NameToLayer("Normal");
         m_boxCollider2D.isTrigger = m_isTouchToBlock ? true : false;
     }
 
@@ -44,38 +44,50 @@ public class Paddle : MonoBehaviour
         if (collision.gameObject.CompareTag("Ball"))
             m_rigidBody2D.velocity = Vector2.zero;
         if (collision.gameObject.CompareTag("Block"))
+        {
             m_isTouchToBlock = true;
+        }
     }
 
 
     private void OnCollisionStay2D(Collision2D collision)
     {
         if (m_isTouchToBlock)
+        {
             DecreaseScore();
+        }
     }
 
     private void OnCollisionExit2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Block"))
+        {
             m_isTouchToBlock = false;
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Block"))
+        {
             m_isTouchToBlock = true;
+        }
     }
 
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (m_isTouchToBlock)
+        {
             DecreaseScore();
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.CompareTag("Block"))
+        {
             m_isTouchToBlock = false;
+        }
     }
 
 
@@ -88,5 +100,10 @@ public class Paddle : MonoBehaviour
     public int GetLevel()
     {
         return m_level;
+    }
+
+    public bool IsTouchToBlock()
+    {
+        return m_isTouchToBlock;
     }
 }

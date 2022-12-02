@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8858842729941361021}
   - component: {fileID: 2441520291284406044}
   - component: {fileID: -3590554573921417680}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: BlockBase
   m_TagString: Block
   m_Icon: {fileID: 0}
@@ -149,6 +149,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_level: 1
   m_spriteRenderer: {fileID: 5806501670572777066}
+  m_boxCollider: {fileID: 0}
 --- !u!1 &8043675522124348171
 GameObject:
   m_ObjectHideFlags: 0
@@ -159,7 +160,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5939132383732624348}
   - component: {fileID: 5633041738322566896}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: OutLine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
