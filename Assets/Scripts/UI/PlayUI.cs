@@ -21,7 +21,7 @@ public class PlayUI : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    public void Execute()
     {
         m_scoreText.text = $"スコア：{Parameter.CURRENT_SCORE.ToString()}点";
         m_timeText.text = $"時間：{(Parameter.CURRENT_TIME -= Time.deltaTime).ToString("#.#")}秒";

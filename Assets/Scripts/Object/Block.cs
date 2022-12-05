@@ -26,7 +26,7 @@ public class Block : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    public void Execute()
     {
         if(m_level <= 0)
             Destroy(gameObject);
@@ -46,25 +46,28 @@ public class Block : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.CompareTag("Ball"))
-        {
-            Parameter.CURRENT_SCORE += Parameter.HIT_BLOCK_SCORE * m_ball.GetLevel();
-            m_level -= m_ball.GetLevel();
-        }
+        HitToBall(collision.collider);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Ball"))
-        {
-            Parameter.CURRENT_SCORE += Parameter.HIT_BLOCK_SCORE * m_level;
-            m_level -= m_ball.GetLevel();
-        }
+        HitToBall(collision);
     }
 
     public void SetColor(Color color)
     {
         if (m_spriteRenderer.color == color) return;
         m_spriteRenderer.color = color;
+    }
+
+    private void HitToBall(Collider2D collision)
+    {
+        int level = m_boxCollider.isTrigger ? m_level : m_ball.GetLevel();
+        if (collision.CompareTag("Ball"))
+        {
+            Parameter.CURRENT_SCORE += Parameter.HIT_BLOCK_SCORE * level;
+            m_level -= m_ball.GetLevel();
+            SoundPlayer.PlaySFX(eSFX.BLOCK_BREAK);
+        }
     }
 }

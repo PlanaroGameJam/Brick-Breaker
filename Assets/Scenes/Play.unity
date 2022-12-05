@@ -336,6 +336,8 @@ MonoBehaviour:
   m_outOfDisplay: {fileID: 7906783409046642270, guid: 28dbca857ec9f8343a13b75ff534f257, type: 3}
   m_paddleObject: {fileID: 1177595316878505889, guid: e4f3c8322c30b4a428d9f870a6df17e3, type: 3}
   m_ballObject: {fileID: 248428843036707046, guid: 6887cb88747cc874da989525a295cc26, type: 3}
+  m_soundManagerObject: {fileID: 490472122217769244, guid: 944824f2a7811e048af8e2fa38941cd7, type: 3}
+  m_countDownObject: {fileID: 473432138986090902, guid: d07affaca9de4674094dd4850085ec4e, type: 3}
 --- !u!1 &2021339660
 GameObject:
   m_ObjectHideFlags: 0
@@ -384,11 +386,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
-  m_ScreenMatchMode: 0
+  m_ReferenceResolution: {x: 1920, y: 1080}
+  m_ScreenMatchMode: 1
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96

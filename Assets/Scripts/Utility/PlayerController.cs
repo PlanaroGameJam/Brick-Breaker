@@ -30,7 +30,14 @@ public class PlayerController : MonoBehaviour
         else if (currentSceneName.Contains("Play"))
         {
             var paddle = GameObject.FindWithTag("Paddle").GetComponent<Paddle>();
+            m_controlActions.Play.Move.started += paddle.Move;
             m_controlActions.Play.Move.performed += paddle.Move;
+            m_controlActions.Play.Move.canceled += paddle.Move;
+
+            m_controlActions.Play.Click.started += paddle.Click;
+            m_controlActions.Play.Click.performed += paddle.ChargePower;
+            m_controlActions.Play.Click.canceled += paddle.JustRelease;
+
             m_controlActions.Play.Enable();
         }
         else if (currentSceneName.Contains("Result"))
@@ -54,7 +61,14 @@ public class PlayerController : MonoBehaviour
         else if (currentSceneName.Contains("Play"))
         {
             var paddle = GameObject.FindWithTag("Paddle").GetComponent<Paddle>();
+            m_controlActions.Play.Move.started -= paddle.Move;
             m_controlActions.Play.Move.performed -= paddle.Move;
+            m_controlActions.Play.Move.canceled -= paddle.Move;
+
+            m_controlActions.Play.Click.started -= paddle.Click;
+            m_controlActions.Play.Click.performed -= paddle.ChargePower;
+            m_controlActions.Play.Click.canceled -= paddle.JustRelease;
+
             m_controlActions.Play.Disable();
         }
         else if (currentSceneName.Contains("Result"))

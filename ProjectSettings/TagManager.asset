@@ -11,6 +11,8 @@ TagManager:
   - Ball
   - Block
   - Range
+  - SoundManager
+  - JustCollision
   layers:
   - Default
   - TransparentFX

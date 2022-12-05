@@ -18,6 +18,8 @@ public class ResultUI : MonoBehaviour
     [SerializeField]
     private Button m_restartButton;
     [SerializeField]
+    private Button m_rankingButton;
+    [SerializeField]
     private Button m_exitButton;
     [SerializeField]
     private List<ScoreRank> m_scoreRankList;
@@ -29,6 +31,7 @@ public class ResultUI : MonoBehaviour
     void Awake()
     {
         m_restartButton.onClick.AddListener(Restart_Click);
+        m_rankingButton.onClick.AddListener(Ranking_Click);
         m_exitButton.onClick.AddListener(Exit_Click);
         SetResult();
     }
@@ -77,6 +80,10 @@ public class ResultUI : MonoBehaviour
     private void Restart_Click()
     {
         SceneManager.LoadSceneAsync("Play");
+    }
+    private void Ranking_Click()
+    {
+        naichilab.RankingLoader.Instance.SendScoreAndShowRanking(Parameter.CURRENT_SCORE);
     }
 
     private void Exit_Click()

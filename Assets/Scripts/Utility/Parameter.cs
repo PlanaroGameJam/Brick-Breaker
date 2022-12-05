@@ -10,11 +10,11 @@ public static class Parameter
     // ボールの初期速度
     public static Vector2 BALL_INIT_VELOCITY = new Vector2(-5.0f, -5.0f);
     // ブロックのサイズ
-    public static Vector3 BLOCK_SIZE = Vector3.zero;
+    public static Vector3 BLOCK_SIZE = Vector3.one;
     // パドルのサイズ
-    public static Vector3 PADDLE_SIZE = Vector3.zero;
+    public static readonly Vector3 PADDLE_SIZE = new Vector3(0.7f, 0.7f, 1.0f);
     // ボールのサイズ
-    public static Vector3 BALL_SIZE = Vector3.zero;
+    public static Vector3 BALL_SIZE = Vector3.one;
     // ジャスト判定のサイズ
     public static Vector3 JUST_RELEASE_SIZE = Vector3.zero;
     // 制限時間
@@ -26,7 +26,7 @@ public static class Parameter
     // パドルがブロックに触れた際のスコア減少量(毎フレーム)
     public static int DECREASE_SCORE_AMOUNT = 1;
     // ボールの最低速度
-    public static Vector2 BALL_MIN_VELOCITY = new Vector2(-5.0f, -5.0f);
+    public static Vector2 BALL_MIN_SPEED = new Vector2(-5.0f, -5.0f);
     // ボールが反射する際の速度倍率
     public static float BALL_BOUND_VELOCITY_MULTIPLY = 0.9f;
     // パドルがパワーチャージを行う際のレベル上昇間隔
@@ -40,7 +40,9 @@ public static class Parameter
     // 現在のハイスコア
     public static int CURRENT_HIGH_SCORE = 0;
     // ステージの開始位置(一番左上のブロックの位置)
-    public static Vector2 START_STAGE_POSITION = new Vector2(-3.5f, -2.0f);
+    public static readonly Vector2 START_STAGE_POSITION = new Vector2(-2.5f, -2.0f);
     // ブロックの配置間隔
-    public static Vector2 BLOCK_POSITION_INTERVAL = new Vector2(0.5f, 0.25f);
+    public static readonly Vector2 BLOCK_POSITION_INTERVAL = new Vector2(0.2f, 0.2f);
+    // カウントダウン秒数
+    public static float COUNT_DOWN_SECOND = 3.0f;
 }

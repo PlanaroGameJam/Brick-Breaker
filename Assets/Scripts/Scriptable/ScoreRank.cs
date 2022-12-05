@@ -9,7 +9,7 @@ public class ScoreRank : ScriptableObject
     private string m_rank;
     [SerializeField]
     private int m_conditionScore;
-    [SerializeField]
+    [SerializeField, Multiline(2)]
     private string m_rankComment;
 
     public string Rank => m_rank;

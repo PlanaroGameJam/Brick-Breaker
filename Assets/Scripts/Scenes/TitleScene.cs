@@ -14,11 +14,18 @@ public class TitleScene : MonoBehaviour
     public PlayerController PlayerController => m_playerController;
     [SerializeField]
     private GameObject m_titleUI;
+    [SerializeField]
+    private GameObject m_soundManagerObject;
+
+
     // Start is called before the first frame update
     void Awake()
     {
         m_playerController = Instantiate(m_playerControllerObject, null).GetComponent<PlayerController>();
         m_titleUI = Instantiate(m_titleUI, GameObject.FindWithTag("Canvas").transform);
+        m_soundManagerObject = Instantiate(m_soundManagerObject, null);
+        SoundPlayer.SetUp(m_soundManagerObject);
+        SoundPlayer.PlayBGM(eBGM.TITLE);
     }
 
     // Update is called once per frame

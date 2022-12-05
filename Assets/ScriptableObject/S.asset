@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_rank: S
   m_conditionScore: 10000
-  m_rankComment: "\u795E\u3058\u3083\u3093\uFF01"
+  m_rankComment: "Congratulations!\n\u3055\u3089\u306B\u9AD8\u307F\u3092\u76EE\u6307\u305D\u3046\uFF01"

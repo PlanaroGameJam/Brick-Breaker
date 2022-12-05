@@ -1,23 +1,23 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor;
+using System.Linq;
 using UnityEngine;
 
 public class SoundManager : MonoBehaviour
 {
-    public enum eAudioStyle
+    [Serializable]
+    public struct BGMInfo
     {
-        BGM,
-        SFX,
+        public eBGM type;
+        public AudioClip clip;
     }
 
     [Serializable]
-    public struct AudioInfo
+    public struct SFXInfo
     {
-        public string name;
+        public eSFX type;
         public AudioClip clip;
-        public eAudioStyle audioStyle;
     }
 
     [Serializable]
@@ -28,16 +28,24 @@ public class SoundManager : MonoBehaviour
     }
 
     [SerializeField]
-    private List<AudioInfo> m_audioList;
+    private List<BGMInfo> m_bgmList;
+    [SerializeField]
+    private List<SFXInfo> m_sfxList;
     [SerializeField]
     private AudioPlayer m_bgmPlayer;
     [SerializeField]
-    private AudioPlayer m_sfxPlayer;
+    private List<AudioPlayer> m_multiSfxPlayer;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-
+        AudioPlayer audioPlayer;
+        for(int i = 0; i < m_multiSfxPlayer.Count; i++)
+        {
+            audioPlayer.audioSource = gameObject.AddComponent<AudioSource>();
+            audioPlayer.volume = m_multiSfxPlayer[i].volume;
+            m_multiSfxPlayer[i] = audioPlayer;
+        }
     }
 
     // Update is called once per frame
@@ -46,24 +54,44 @@ public class SoundManager : MonoBehaviour
 
     }
 
-    public AudioInfo GetBGM(string findName)
+    public AudioClip GetBGM(eBGM type)
     {
-        return m_audioList.Find(audio => audio.name == findName && audio.audioStyle == eAudioStyle.BGM);
+        return m_bgmList.Find(bgm => bgm.type == type).clip;
     }
 
-    public AudioInfo GetSFX(string findName)
+    public AudioClip GetSFX(eSFX type)
     {
-        return m_audioList.Find(audio => audio.name == findName && audio.audioStyle == eAudioStyle.SFX);
+        return m_sfxList.Find(sfx => sfx.type == type).clip;
     }
 
-    public void PlayBGM(in string findName)
+    public void PlayBGM(in eBGM type)
     {
-        m_bgmPlayer.audioSource.PlayOneShot(GetBGM(findName).clip, m_bgmPlayer.volume);
+        m_bgmPlayer.audioSource.clip = GetBGM(type);
+        m_bgmPlayer.audioSource.volume = m_bgmPlayer.volume;
+        m_bgmPlayer.audioSource.Play();
     }
 
-    public void PlaySFX(in string findName)
+    public void PlaySFX(in eSFX type)
     {
-        m_sfxPlayer.audioSource.PlayOneShot(GetSFX(findName).clip, m_sfxPlayer.volume);
+        AudioPlayer sfxPlayer = GetUnUsedPlayer();
+        sfxPlayer.audioSource.PlayOneShot(GetSFX(type), sfxPlayer.volume);
     }
 
+    public AudioPlayer GetUnUsedPlayer()
+    {
+        return m_multiSfxPlayer.Find(player => player.audioSource.isPlaying == false);
+    }
+
+}
+
+
+public enum eBGM
+{
+    TITLE,
+}
+
+public enum eSFX
+{
+    CLICK,
+    BLOCK_BREAK,
 }

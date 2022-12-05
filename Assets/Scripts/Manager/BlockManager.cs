@@ -21,16 +21,21 @@ public class BlockManager : MonoBehaviour
     {
         m_blocks = FindObjectsOfType<Block>().ToList();
         m_blocks.ForEach(block => block.transform.SetParent(transform, true));
+        foreach (var block in m_blocks)
+        {
+            if (block.GetLevel() <= 0) continue;
+            block.SetColor(m_levelColor[block.GetLevel()]);
+        }
     }
 
     // Update is called once per frame
-    void Update()
+    public void Execute()
     {
-        m_blocks.RemoveAll(blockObject => blockObject == null);
+        m_blocks.RemoveAll(block => block == null);
 
-        foreach (var blockObject in m_blocks)
+        foreach (var block in m_blocks)
         {
-            var block = blockObject.GetComponent<Block>();
+            block.Execute();
             if (block.GetLevel() <= 0) continue;
             block.SetColor(m_levelColor[block.GetLevel()]);
         }

@@ -47,6 +47,15 @@ public partial class @ControlActions : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Click"",
+                    ""type"": ""Button"",
+                    ""id"": ""57611e7b-da31-4691-8d5e-17902d92ac75"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press(behavior=2)"",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -58,6 +67,17 @@ public partial class @ControlActions : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ac665d9d-0daf-437d-b2a1-bf33adacd30f"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Click"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -79,6 +99,7 @@ public partial class @ControlActions : IInputActionCollection2, IDisposable
         // Play
         m_Play = asset.FindActionMap("Play", throwIfNotFound: true);
         m_Play_Move = m_Play.FindAction("Move", throwIfNotFound: true);
+        m_Play_Click = m_Play.FindAction("Click", throwIfNotFound: true);
         // Result
         m_Result = asset.FindActionMap("Result", throwIfNotFound: true);
     }
@@ -191,11 +212,13 @@ public partial class @ControlActions : IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Play;
     private IPlayActions m_PlayActionsCallbackInterface;
     private readonly InputAction m_Play_Move;
+    private readonly InputAction m_Play_Click;
     public struct PlayActions
     {
         private @ControlActions m_Wrapper;
         public PlayActions(@ControlActions wrapper) { m_Wrapper = wrapper; }
         public InputAction @Move => m_Wrapper.m_Play_Move;
+        public InputAction @Click => m_Wrapper.m_Play_Click;
         public InputActionMap Get() { return m_Wrapper.m_Play; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -208,6 +231,9 @@ public partial class @ControlActions : IInputActionCollection2, IDisposable
                 @Move.started -= m_Wrapper.m_PlayActionsCallbackInterface.OnMove;
                 @Move.performed -= m_Wrapper.m_PlayActionsCallbackInterface.OnMove;
                 @Move.canceled -= m_Wrapper.m_PlayActionsCallbackInterface.OnMove;
+                @Click.started -= m_Wrapper.m_PlayActionsCallbackInterface.OnClick;
+                @Click.performed -= m_Wrapper.m_PlayActionsCallbackInterface.OnClick;
+                @Click.canceled -= m_Wrapper.m_PlayActionsCallbackInterface.OnClick;
             }
             m_Wrapper.m_PlayActionsCallbackInterface = instance;
             if (instance != null)
@@ -215,6 +241,9 @@ public partial class @ControlActions : IInputActionCollection2, IDisposable
                 @Move.started += instance.OnMove;
                 @Move.performed += instance.OnMove;
                 @Move.canceled += instance.OnMove;
+                @Click.started += instance.OnClick;
+                @Click.performed += instance.OnClick;
+                @Click.canceled += instance.OnClick;
             }
         }
     }
@@ -253,6 +282,7 @@ public partial class @ControlActions : IInputActionCollection2, IDisposable
     public interface IPlayActions
     {
         void OnMove(InputAction.CallbackContext context);
+        void OnClick(InputAction.CallbackContext context);
     }
     public interface IResultActions
     {

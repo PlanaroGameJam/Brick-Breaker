@@ -29,14 +29,14 @@ public class TitleUI : MonoBehaviour
 
     private void Start_Click()
     {
+        SoundPlayer.PlaySFX_With_Scene(eSFX.CLICK, "Play");
         m_titleScene.PlayerController.Disable();
-        SceneManager.LoadSceneAsync("Play");
     }
 
     private void HowToPlay_Click()
     {
+        SoundPlayer.PlaySFX_With_Scene(eSFX.CLICK, "Tutorial");
         m_titleScene.PlayerController.Disable();
-        SceneManager.LoadSceneAsync("Tutorial");
     }
 
 }

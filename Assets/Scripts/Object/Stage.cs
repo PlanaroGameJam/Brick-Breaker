@@ -9,7 +9,7 @@ public class Stage : MonoBehaviour
     private GameObject m_blockObject;
     void Awake()
     {
-        m_stage = LoadStage.Load("Stage");
+        m_stage = LoadStage.Load("Stage", this);
 
         for(int i = 0; i < m_stage.Count; i++)
         {
