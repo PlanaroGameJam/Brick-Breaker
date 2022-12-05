@@ -29,6 +29,12 @@ public class Ball : MonoBehaviour
 
     private void FixedUpdate()
     {
+
+    }
+
+    private void BoundFast()
+    {
+        m_rigidBody2D.velocity *= -1 * Parameter.SUCCESS_TO_REFLECT_BALL_VELOCITY_MULTIPLY;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -42,19 +48,15 @@ public class Ball : MonoBehaviour
         if(collision.gameObject.CompareTag("Block"))
         {
             float last_speed = m_rigidBody2D.velocity.magnitude;
-            float new_speed = Mathf.Max(last_speed * Parameter.BALL_BOUND_VELOCITY_MULTIPLY, Parameter.BALL_MIN_SPEED.magnitude);
-            float bound = new_speed.Equals(Parameter.BALL_MIN_SPEED.sqrMagnitude) ? 1.0f : Parameter.BALL_BOUND_VELOCITY_MULTIPLY;
+            float new_speed = Mathf.Max(last_speed, Parameter.BALL_MIN_SPEED.magnitude);
             //BALL_MIN_VELOCITYÇÕVELOCITYÇÃëÂÇ´Ç≥ÅAÇ¬Ç‹ÇËfloatÇ∆Ç∑ÇÈ
 
-            Debug.Log(m_rigidBody2D.velocity.magnitude);
-
             m_rigidBody2D.velocity = m_rigidBody2D.velocity.normalized * new_speed;
-            m_rigidBody2D.sharedMaterial.bounciness = bound;
-        }
+            if (m_rigidBody2D.velocity.magnitude < Parameter.BALL_MIN_SPEED.magnitude)
+                m_rigidBody2D.sharedMaterial.bounciness = 1.0f;
+            else
+                m_rigidBody2D.sharedMaterial.bounciness = Parameter.BALL_BOUND_VELOCITY_MULTIPLY;
 
-        if (collision.gameObject.CompareTag("JustCollision"))
-        {
-            collision.gameObject.GetComponentInParent<Paddle>().GetComponent<SpriteRenderer>().color = Color.red;
         }
 
     }
@@ -80,10 +82,6 @@ public class Ball : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.CompareTag("JustCollision"))
-        {
-            collision.GetComponentInParent<Paddle>().GetComponent<SpriteRenderer>().color = Color.red;
-        }
     }
     private void OnTriggerStay2D(Collider2D collision)
     {
@@ -115,6 +113,12 @@ public class Ball : MonoBehaviour
     public int GetLevel()
     {
         return m_level;
+    }
+
+    private void SetLevel(int level)
+    {
+        m_level += level;
+        m_level = Mathf.Clamp(m_level, 1, 10);
     }
 
 }

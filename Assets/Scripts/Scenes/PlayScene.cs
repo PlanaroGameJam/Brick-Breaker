@@ -47,6 +47,8 @@ public class PlayScene : MonoBehaviour
 
         Parameter.CURRENT_SCORE = 0;
         Parameter.CURRENT_TIME = Parameter.LIMIT_TIME;
+
+        SoundPlayer.PlayBGM(eBGM.TITLE);
     }
 
     // Update is called once per frame
@@ -55,7 +57,6 @@ public class PlayScene : MonoBehaviour
         m_countDown.Execute();
         if (!m_countDown.IsFinish()) return;
         m_ball.Execute();
-        m_paddle.Execute();
         m_blockManager.Execute();
 
         m_playUI.Execute();
@@ -64,6 +65,12 @@ public class PlayScene : MonoBehaviour
             m_playerController.Disable();
             SceneManager.LoadSceneAsync("Result");
         };
+    }
+
+    private void FixedUpdate()
+    {
+        if (!m_countDown.IsFinish()) return;
+        m_paddle.Execute();
     }
 
     private bool IsGameOver()

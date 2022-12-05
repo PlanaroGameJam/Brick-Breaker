@@ -20,27 +20,23 @@ public static class LoadStage
 
     public static List<int[]> Load(in string fileName, MonoBehaviour requestObject)
     {
-#if UNITY_WEBGL
         STAGE_PATH = $"{Application.streamingAssetsPath}/";
-#elif UNITY_EDITOR
-        STAGE_PATH = "Assets/Stage/";
-#else
-        STAGE_PATH = "Stage/";
-#endif
         string fullPath = STAGE_PATH + fileName + FILE_EXTENSION;
 #if UNITY_WEBGL
         if (STAGE.Count == 0)
             WebRequest(fullPath);
 #elif UNITY_EDITOR
-        using (System.IO.StreamReader reader = new System.IO.StreamReader(fullPath))
+        if (STAGE.Count == 0)
         {
-            string allString = reader.ReadToEnd().TrimEnd();
-            string[] lines = allString.Split("\r\n");
-            lines.ToList().ForEach(line => STAGE.Add(line.Split(",").ToList().ConvertAll(int.Parse).ToArray()));
+            using (System.IO.StreamReader reader = new System.IO.StreamReader(fullPath))
+            {
+                string allString = reader.ReadToEnd().TrimEnd();
+                string[] lines = allString.Split("\r\n");
+                lines.ToList().ForEach(line => STAGE.Add(line.Split(",").ToList().ConvertAll(int.Parse).ToArray()));
+            }
         }
 #endif
         return STAGE;
-
     }
 
 

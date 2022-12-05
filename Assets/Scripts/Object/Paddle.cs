@@ -19,10 +19,12 @@ public class Paddle : MonoBehaviour
 
     private int m_level = 1;
     private float m_time = 0.0f;
+    private bool m_isCharge = false;
+    private bool m_isTouchToJustCollision = false;
 
     Dictionary<int, Color> m_levelColor = new Dictionary<int, Color>
     {
-        {1, Color.blue },
+        {1, Color.cyan },
         {2, Color.yellow},
         {3, Color.green},
         {4, new Color(1.0f,0.0f,1.0f)},
@@ -32,6 +34,7 @@ public class Paddle : MonoBehaviour
     void Awake()
     {
         TryGetComponent(out m_rigidBody2D);
+        TryGetComponent(out m_spriteRenderer);
         transform.localScale = Parameter.PADDLE_SIZE;
     }
 
@@ -42,6 +45,13 @@ public class Paddle : MonoBehaviour
         m_spriteRenderer.color = m_isTouchToBlock ? ALPHA_COLOR : NORMAL_COLOR;
         gameObject.layer = m_isTouchToBlock ? LayerMask.NameToLayer("Alpha") : LayerMask.NameToLayer("Normal");
         m_boxCollider2D.isTrigger = m_isTouchToBlock ? true : false;
+
+        if(m_isCharge)
+        {
+            m_time += Time.deltaTime;
+            m_level = Mathf.Clamp(m_level + Mathf.FloorToInt(m_time / Parameter.PADDLE_LEVEL_UP_INTERVAL), 1, 5);
+        }
+        m_spriteRenderer.color = m_levelColor[m_level];
     }
 
     public void Move(InputAction.CallbackContext context)
@@ -50,25 +60,39 @@ public class Paddle : MonoBehaviour
         var position = context.ReadValue<Vector2>();
         position.x = Mathf.Clamp(position.x, 0.0f, (float)Screen.width);
         position.y = Mathf.Clamp(position.y, 0.0f, 930.0f / 1080.0f * (float)Screen.height);
-        m_rigidBody2D.position = Camera.main.ScreenToWorldPoint(position);
+
+        if(m_isCharge)
+            m_rigidBody2D.position = Vector2.MoveTowards(Camera.main.ScreenToWorldPoint(position), m_rigidBody2D.position, m_rigidBody2D.velocity.magnitude * Parameter.PADDLE_CHARGE_VELOCITY_MULTIPLY);
+        else
+            m_rigidBody2D.position = Camera.main.ScreenToWorldPoint(position);
     }
 
     public void Click(InputAction.CallbackContext context)
     {
-
+        if(m_isTouchToJustCollision)
+        {
+            GameObject ball = GameObject.FindGameObjectWithTag("Ball");
+            ball.SendMessage("BoundFast");
+        }
     }
 
     public void ChargePower(InputAction.CallbackContext context)
     {
-        m_time += Time.deltaTime;
-        Debug.Log(m_time / Parameter.PADDLE_LEVEL_UP_INTERVAL);
-        m_level = System.Math.Clamp(m_level, 1, 5);
-        m_spriteRenderer.color = m_levelColor[m_level];
+        m_isCharge = true;
     }
 
     public void JustRelease(InputAction.CallbackContext context)
     {
+        if (m_isTouchToJustCollision)
+        {
+            GameObject ball = GameObject.FindGameObjectWithTag("Ball");
+            ball.SendMessage("SetLevel", m_level);
+            ball.SendMessage("BoundFast");
 
+        }
+        m_isCharge = false;
+        m_level = 1;
+        m_time = 0.0f;
     }
 
 
@@ -105,6 +129,9 @@ public class Paddle : MonoBehaviour
         {
             m_isTouchToBlock = true;
         }
+
+        if (collision.CompareTag("Ball"))
+            m_isTouchToJustCollision = true;
     }
 
     private void OnTriggerStay2D(Collider2D collision)
@@ -113,6 +140,8 @@ public class Paddle : MonoBehaviour
         {
             DecreaseScore();
         }
+
+
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -121,6 +150,9 @@ public class Paddle : MonoBehaviour
         {
             m_isTouchToBlock = false;
         }
+
+        if (collision.CompareTag("Ball"))
+            m_isTouchToJustCollision = false;
     }
 
 
