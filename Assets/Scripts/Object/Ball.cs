@@ -48,17 +48,28 @@ public class Ball : MonoBehaviour
         if(collision.gameObject.CompareTag("Block"))
         {
             float last_speed = m_rigidBody2D.velocity.magnitude;
-            float new_speed = Mathf.Max(last_speed, Parameter.BALL_MIN_SPEED.magnitude);
-            //BALL_MIN_SPEEDÇÕVELOCITYÇÃëÂÇ´Ç≥ÅAÇ¬Ç‹ÇËfloatÇ∆Ç∑ÇÈ
+            float new_speed = Mathf.Max(last_speed, Parameter.BALL_MIN_VELOCITY.magnitude);
+            //BALL_MIN_VELOCITYÇÕëÂÇ´Ç≥ÇÃÇ›ÇéQè∆Ç∑ÇÈ
 
             m_rigidBody2D.velocity = m_rigidBody2D.velocity.normalized * new_speed;
-            if (m_rigidBody2D.velocity.magnitude < Parameter.BALL_MIN_SPEED.magnitude)
+            if (m_rigidBody2D.velocity.magnitude < Parameter.BALL_MIN_VELOCITY.magnitude)
+            {
                 m_rigidBody2D.sharedMaterial.bounciness = 1.0f;
+            }
             else
+            {
                 m_rigidBody2D.sharedMaterial.bounciness = Parameter.BALL_BOUND_VELOCITY_MULTIPLY;
-
+            }
         }
 
+        if(collision.gameObject.CompareTag("Paddle"))
+        {
+            float last_speed = m_rigidBody2D.velocity.magnitude;
+
+            Debug.Log($"{collision.contacts[0].point}, {(Vector2)collision.gameObject.transform.position}");
+            m_rigidBody2D.velocity = collision.contacts[0].point - (Vector2)collision.gameObject.transform.position;
+            m_rigidBody2D.velocity = m_rigidBody2D.velocity.normalized * last_speed;
+        }
     }
 
 
@@ -102,7 +113,6 @@ public class Ball : MonoBehaviour
         {
             collision.GetComponentInParent<Paddle>().GetComponent<SpriteRenderer>().color = Color.cyan;
         }
-
     }
 
     public bool IsOutOfRange()
@@ -120,5 +130,4 @@ public class Ball : MonoBehaviour
         m_level += level;
         m_level = Mathf.Clamp(m_level, 1, 10);
     }
-
 }

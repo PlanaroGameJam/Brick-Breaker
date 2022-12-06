@@ -41,7 +41,6 @@ public class Paddle : MonoBehaviour
     // Update is called once per frame
     public void Execute()
     {
-
         m_spriteRenderer.color = m_isTouchToBlock ? ALPHA_COLOR : NORMAL_COLOR;
         gameObject.layer = m_isTouchToBlock ? LayerMask.NameToLayer("Alpha") : LayerMask.NameToLayer("Normal");
         m_boxCollider2D.isTrigger = m_isTouchToBlock ? true : false;

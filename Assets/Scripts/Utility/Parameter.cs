@@ -26,7 +26,7 @@ public static class Parameter
     // パドルがブロックに触れた際のスコア減少量(毎フレーム)
     public static int DECREASE_SCORE_AMOUNT = 1;
     // ボールの最低速度
-    public static Vector2 BALL_MIN_SPEED = new Vector2(-1.0f, -1.0f);
+    public static Vector2 BALL_MIN_VELOCITY = new Vector2(-1.0f, -1.0f);
     // ボールが反射する際の速度倍率
     public static float BALL_BOUND_VELOCITY_MULTIPLY = 0.9f;
     // パドルがパワーチャージを行う際のレベル上昇間隔

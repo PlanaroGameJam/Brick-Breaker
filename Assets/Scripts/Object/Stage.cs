@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,7 +12,7 @@ public class Stage : MonoBehaviour
     {
         m_stage = LoadStage.Load("Stage", this);
         foreach (int[] m_line in m_stage){
-            Debug.Log(String.Join(""));
+            Debug.Log( String.Join(", ", m_line) );
         }
 
         for(int i = 0; i < m_stage.Count; i++)
