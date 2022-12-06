@@ -49,7 +49,7 @@ public class Ball : MonoBehaviour
         {
             float last_speed = m_rigidBody2D.velocity.magnitude;
             float new_speed = Mathf.Max(last_speed, Parameter.BALL_MIN_SPEED.magnitude);
-            //BALL_MIN_VELOCITY‚ÍVELOCITY‚Ì‘å‚«‚³A‚Â‚Ü‚èfloat‚Æ‚·‚é
+            //BALL_MIN_SPEED‚ÍVELOCITY‚Ì‘å‚«‚³A‚Â‚Ü‚èfloat‚Æ‚·‚é
 
             m_rigidBody2D.velocity = m_rigidBody2D.velocity.normalized * new_speed;
             if (m_rigidBody2D.velocity.magnitude < Parameter.BALL_MIN_SPEED.magnitude)

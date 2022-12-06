@@ -24,10 +24,10 @@ public class Paddle : MonoBehaviour
 
     Dictionary<int, Color> m_levelColor = new Dictionary<int, Color>
     {
-        {1, Color.cyan },
+        {1, Color.cyan},
         {2, Color.yellow},
         {3, Color.green},
-        {4, new Color(1.0f,0.0f,1.0f)},
+        {4, Color.magenta},
         {5, Color.red},
     };
 
@@ -88,7 +88,6 @@ public class Paddle : MonoBehaviour
             GameObject ball = GameObject.FindGameObjectWithTag("Ball");
             ball.SendMessage("SetLevel", m_level);
             ball.SendMessage("BoundFast");
-
         }
         m_isCharge = false;
         m_level = 1;

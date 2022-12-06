@@ -10,7 +10,7 @@ public class BlockManager : MonoBehaviour
         {1, Color.blue },
         {2, Color.yellow},
         {3, Color.green},
-        {4, new Color(1.0f,0.0f,1.0f)},
+        {4, Color.magenta},
         {5, Color.red},
     };
 
@@ -40,7 +40,6 @@ public class BlockManager : MonoBehaviour
             block.SetColor(m_levelColor[block.GetLevel()]);
         }
     }
-
 
     /*============================================
      * 概要：全てのブロックが壊れているか
