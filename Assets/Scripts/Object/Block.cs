@@ -67,6 +67,7 @@ public class Block : MonoBehaviour
         {
             Parameter.CURRENT_SCORE += Parameter.HIT_BLOCK_SCORE * level;
             m_level -= m_ball.GetLevel();
+            m_ball.ReduceLevel(level);
             SoundPlayer.PlaySFX(eSFX.BLOCK_BREAK);
         }
     }

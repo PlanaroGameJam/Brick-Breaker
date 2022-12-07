@@ -94,6 +94,7 @@ public class Ball : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
     }
+
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.CompareTag("JustCollision"))
@@ -125,9 +126,15 @@ public class Ball : MonoBehaviour
         return m_level;
     }
 
-    private void SetLevel(int level)
+    private void AddLevel(int level)
     {
         m_level += level;
-        m_level = Mathf.Clamp(m_level, 1, 10);
+        m_level = Mathf.Clamp(m_level, 1, Parameter.BALL_MAX_LEVEL);
+    }
+
+    public void ReduceLevel(int level)
+    {
+        m_level -= level;
+        m_level = Mathf.Clamp(m_level, 1, Parameter.BALL_MAX_LEVEL);
     }
 }

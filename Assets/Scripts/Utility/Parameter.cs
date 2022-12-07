@@ -26,17 +26,17 @@ public static class Parameter
     // パドルがブロックに触れた際のスコア減少量(毎フレーム)
     public static int DECREASE_SCORE_AMOUNT = 1;
     // ボールの最低速度
-    public static Vector2 BALL_MIN_VELOCITY = new Vector2(-1.0f, -1.0f);
+    public static Vector2 BALL_MIN_VELOCITY = new Vector2(-2.0f, -2.0f);
     // ボールが反射する際の速度倍率
     public static float BALL_BOUND_VELOCITY_MULTIPLY = 0.9f;
     // パドルがパワーチャージを行う際のレベル上昇間隔
     public static float PADDLE_LEVEL_UP_INTERVAL = 0.5f;
     // パドルがパワーチャージをしている最中の速度倍率
-    public static float PADDLE_CHARGE_VELOCITY_MULTIPLY = 1.0f;
+    public static float PADDLE_CHARGE_VELOCITY_MULTIPLY = 0.5f;
     // ボールの最大レベル
-    public static int BALL_MAX_LEVEL = 10;
+    public static int BALL_MAX_LEVEL = 20;
     // ボールの反射に成功した場合の速度倍率
-    public static float SUCCESS_TO_REFLECT_BALL_VELOCITY_MULTIPLY = 1.5f;
+    public static float SUCCESS_TO_REFLECT_BALL_VELOCITY_MULTIPLY = 1.2f;
 
     // 現在のスコア
     public static int CURRENT_SCORE = 0;

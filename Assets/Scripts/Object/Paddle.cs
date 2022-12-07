@@ -85,7 +85,7 @@ public class Paddle : MonoBehaviour
         if (m_isTouchToJustCollision)
         {
             GameObject ball = GameObject.FindGameObjectWithTag("Ball");
-            ball.SendMessage("SetLevel", m_level);
+            ball.SendMessage("AddLevel", m_level);
             ball.SendMessage("BoundFast");
         }
         m_isCharge = false;
