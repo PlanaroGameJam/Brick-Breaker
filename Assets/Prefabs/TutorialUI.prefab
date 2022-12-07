@@ -176,9 +176,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_pageSprites:
-  - {fileID: 21300000, guid: 1bbd845a00d845042a1e51ec212bfef6, type: 3}
-  - {fileID: 21300000, guid: 22d7d7569b7bd994c930fa5777e781af, type: 3}
-  - {fileID: 21300000, guid: 87847a5e995cca9488a4e13053e0178a, type: 3}
+  - {fileID: 21300000, guid: 30ad52ba85f2c5c478f8d27d36893a91, type: 3}
+  - {fileID: 21300000, guid: 7c7344da49c271e4b935cb9051595f82, type: 3}
+  - {fileID: 21300000, guid: 6904432a209d73744ac84dcafb266535, type: 3}
   m_pageObject: {fileID: 2754545375943339815}
   m_leftButton: {fileID: 2754545375753835592}
   m_rightButton: {fileID: 2754545375298862300}

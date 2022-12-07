@@ -34,6 +34,7 @@ public class TutorialUI : MonoBehaviour
 
     private void Left_Click()
     {
+        SoundPlayer.PlaySFX(eSFX.CLICK);
         m_pageIndex = System.Math.Clamp(--m_pageIndex, 0, m_pageSprites.Count - 1);
         SetSprite();
         SetButtonState();
@@ -42,6 +43,7 @@ public class TutorialUI : MonoBehaviour
 
     private void Right_Click()
     {
+        SoundPlayer.PlaySFX(eSFX.CLICK);
         m_pageIndex = System.Math.Clamp(++m_pageIndex, 0, m_pageSprites.Count - 1);
         SetSprite();
         SetButtonState();
@@ -50,8 +52,7 @@ public class TutorialUI : MonoBehaviour
 
     private void Close_Click()
     {
-        //m_playerController.Disable();
-        SceneManager.LoadSceneAsync("Title");
+        SoundPlayer.PlaySFX_With_Scene(eSFX.CLICK, "Title");
     }
 
     private void SetSprite()

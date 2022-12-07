@@ -79,7 +79,7 @@ public class ResultUI : MonoBehaviour
 
     private void Restart_Click()
     {
-        SceneManager.LoadSceneAsync("Play");
+        SoundPlayer.PlaySFX_With_Scene(eSFX.CLICK, "Play");
     }
     private void Ranking_Click()
     {
@@ -88,6 +88,6 @@ public class ResultUI : MonoBehaviour
 
     private void Exit_Click()
     {
-        SceneManager.LoadSceneAsync("Title");
+        SoundPlayer.PlaySFX_With_Scene(eSFX.CLICK, "Title");
     }
 }

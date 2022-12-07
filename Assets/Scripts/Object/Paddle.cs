@@ -56,14 +56,15 @@ public class Paddle : MonoBehaviour
     public void Move(InputAction.CallbackContext context)
     {
         if (m_rigidBody2D == null) return;
-        var position = context.ReadValue<Vector2>();
-        position.x = Mathf.Clamp(position.x, 0.0f, (float)Screen.width);
-        position.y = Mathf.Clamp(position.y, 0.0f, 930.0f / 1080.0f * (float)Screen.height);
 
-        if(m_isCharge)
-            m_rigidBody2D.position = Vector2.MoveTowards(Camera.main.ScreenToWorldPoint(position), m_rigidBody2D.position, m_rigidBody2D.velocity.magnitude * Parameter.PADDLE_CHARGE_VELOCITY_MULTIPLY);
-        else
-            m_rigidBody2D.position = Camera.main.ScreenToWorldPoint(position);
+
+        var mousePosition = context.ReadValue<Vector2>();
+        var position = Vector3.zero;
+        position.x = Mathf.Clamp(mousePosition.x, 0.0f, (float)Screen.width);
+        position.y = Mathf.Clamp(mousePosition.y, 0.0f,  0.85f * (float)Screen.height);
+        position.z = -(Camera.main.transform.position.z);
+
+        m_rigidBody2D.position = Camera.main.ScreenToWorldPoint(position);
     }
 
     public void Click(InputAction.CallbackContext context)

@@ -31,12 +31,14 @@ public static class SoundPlayer
     {
         SoundManager.AudioPlayer audioPlayer = SoundManager.GetUnUsedPlayer();
         SoundManager.PlaySFX(type);
-        while (true)
+        var nextScene = SceneManager.LoadSceneAsync(scene);
+        nextScene.allowSceneActivation = false;
+        while (!nextScene.allowSceneActivation)
         {
             yield return new WaitForFixedUpdate();
             if(!audioPlayer.audioSource.isPlaying)
             {
-                SceneManager.LoadSceneAsync(scene);
+                nextScene.allowSceneActivation = true;
             }
         }
     }

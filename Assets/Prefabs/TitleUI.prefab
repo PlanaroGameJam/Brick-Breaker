@@ -201,7 +201,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 38ad6c8f6906f3149ab30a3ef6a41399, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 82c536e8818da7045a5925ff2e00ca0b, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -399,6 +399,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d67f66d7c5fbfb4eb3c7265eeee3a4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_titleLogos:
+  - {fileID: 21300000, guid: 82c536e8818da7045a5925ff2e00ca0b, type: 3}
+  - {fileID: 21300000, guid: 38ad6c8f6906f3149ab30a3ef6a41399, type: 3}
+  m_titleLogoObject: {fileID: 1716508778308812394}
   m_startButton: {fileID: 6381258042244087206}
   m_howToPlayButton: {fileID: 3791033245429790510}
 --- !u!1 &5522015771689000788

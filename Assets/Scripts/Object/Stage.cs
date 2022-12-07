@@ -10,7 +10,7 @@ public class Stage : MonoBehaviour
     private GameObject m_blockObject;
     void Awake()
     {
-        m_stage = LoadStage.Load("Stage", this);
+        m_stage = LoadStage.Load("Stage");
         foreach (int[] m_line in m_stage){
             Debug.Log( String.Join(", ", m_line) );
         }

@@ -18,13 +18,23 @@ public static class LoadStage
 
     private static List<int[]> STAGE = new List<int[]>();
 
-    public static List<int[]> Load(in string fileName, MonoBehaviour requestObject)
+    public static string A = "";
+
+    public static List<int[]> Load(in string fileName)
     {
         STAGE_PATH = $"{Application.streamingAssetsPath}/";
         string fullPath = STAGE_PATH + fileName + FILE_EXTENSION;
-#if UNITY_WEBGL
+#if UNITY_WEBGL || PLATFORM_WEBGL
+        //if (STAGE.Count == 0)
+        //    WebRequest(fullPath);
         if (STAGE.Count == 0)
-            WebRequest(fullPath);
+        {
+            STAGE.Add(new int[] { 1, 4, 3, 4, 1 });
+            STAGE.Add(new int[] { 1, 2, 4, 2, 1 });
+            STAGE.Add(new int[] { 3, 3, 5, 3, 3 });
+            STAGE.Add(new int[] { 1, 2, 4, 2, 1 });
+            STAGE.Add(new int[] { 1, 4, 3, 4, 1 });
+        }
 #elif UNITY_EDITOR
         if (STAGE.Count == 0)
         {
@@ -40,7 +50,6 @@ public static class LoadStage
     }
 
 
-#if UNITY_WEBGL
     private static async void WebRequest(string fullPath)
     {
         UnityWebRequest webRequest = UnityWebRequest.Get(fullPath);
@@ -49,5 +58,4 @@ public static class LoadStage
         string[] lines = allString.Split("\r\n");
         lines.ToList().ForEach(line => STAGE.Add(line.Split(",").ToList().ConvertAll(int.Parse).ToArray()));
     }
-#endif
 }
